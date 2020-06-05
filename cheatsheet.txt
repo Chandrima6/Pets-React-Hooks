@@ -1,0 +1,11 @@
+eslint rc file rules
+0 => off
+1 => warn
+2 => error
+
+HOOKS:
+react "useState" hooks: alternative way of maintaining state
+can't be used inside if / for loops
+
+JSX:
+underlying all JSX converted to React.createElement

@@ -1,10 +1,17 @@
 import React from "react";
-export default function Pet({ name, category, type }) {
+export default function Pet({ id, name, animal, breed, media, location }) {
+  const image = media.length
+    ? media[0].small
+    : "https://placecorgi.com/300/300";
   return (
-    <div>
-      <h1>{name}</h1>
-      <h2>{category}</h2>
-      <h2>{type}</h2>
-    </div>
+    <a href={`/details/${id}`} className="pet">
+      <div className="image-container">
+        <img src={image} alt={name} />
+      </div>
+      <div className="info">
+        <h1>{name}</h1>
+        <h2>{`${animal} - ${breed} - ${location}`}</h2>
+      </div>
+    </a>
   );
 }
