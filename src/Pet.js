@@ -1,8 +1,6 @@
 import React from "react";
 export default function Pet({ id, name, animal, breed, media, location }) {
-  const image = media.length
-    ? media[0].small
-    : "https://placecorgi.com/300/300";
+  const image = media.length ? media[0].small : "http://placecorgi.com/300/300";
   return (
     <a href={`/details/${id}`} className="pet">
       <div className="image-container">
