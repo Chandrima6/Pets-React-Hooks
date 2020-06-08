@@ -6,6 +6,17 @@ eslint rc file rules
 HOOKS:
 react "useState" hooks: alternative way of maintaining state
 can't be used inside if / for loops
+Class component can't have hooks
 
 JSX:
 underlying all JSX converted to React.createElement
+
+
+
+Generic Notes:
+
+get a derived state => passing a property to a child component from parent as state and if we want to interact with a portion of that property data use static method getDerivedStateFromProps
+
+arrow function dont create new context so this will refer to the component but normal functions create new context so have to bind this to the function. whenever passing functions to child component and using event handlers use arrow function to make sure this refers to the current component. lifecycle methods, render will always have current context of this.
+
++ converts any string to number
