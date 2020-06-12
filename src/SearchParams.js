@@ -1,8 +1,8 @@
 import React from "react";
 import Pet, { ANIMALS } from "@frontendmasters/pet";
-import Results from "./Results";
 import useDropdown from "./useDropdown";
 import ThemeContext from "./ThemeContext";
+import Results from "./Results";
 
 const SearchParams = () => {
   const [location, updateLocation] = React.useState("Seattle, WA");
