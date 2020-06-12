@@ -9,6 +9,9 @@ can't be used inside if / for loops
 Class component can't have hooks
 useEffect is not run initially, it is registered but called only after the component renders. Also how many times it is called depends on the state properties it is depending on. We should add the dependencies in an array in the use effect. If useEffect needs to run only once we have to provide [] as it does not have any dependency. If useEffect returns a function that means that function is a clean up function and it will be run once the component un mounts.
 
+useContext + useReducer => meets the purpose of redux
+Reducer function is which takes an old state , an action and returns the new state. It is easy to test.
+
 JSX:
 underlying all JSX converted to React.createElement
 
