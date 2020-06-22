@@ -1,17 +1,17 @@
 import React, { lazy, Suspense } from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
-import ThemeContext from "./ThemeContext";
+import { Provider } from "react-redux";
 import NavBar from "./NavBar";
+import store from "./store";
 
 const Details = lazy(() => import("./Details"));
 const SearchParams = lazy(() => import("./SearchParams"));
 
 const App = () => {
-  const themeHook = React.useState("green");
   return (
     <React.StrictMode>
-      <ThemeContext.Provider value={themeHook}>
+      <Provider store={store}>
         <div id="container">
           <NavBar />
           <Suspense fallback={<h1>loading route ....</h1>}>
@@ -21,7 +21,7 @@ const App = () => {
             </Router>
           </Suspense>
         </div>
-      </ThemeContext.Provider>
+      </Provider>
     </React.StrictMode>
   );
 };
