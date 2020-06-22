@@ -1,13 +1,14 @@
-import React from "react";
-import Pet, { ANIMALS } from "@frontendmasters/pet";
+import React, { FunctionComponent, SetStateAction } from "react";
+import Pet, { ANIMALS, Animal, Breeds } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 import ThemeContext from "./ThemeContext";
 import Results from "./Results";
+import { RouteComponentProps } from "@reach/router";
 
-const SearchParams = () => {
+const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   const [location, updateLocation] = React.useState("Seattle, WA");
-  const [pets, updatePets] = React.useState([]);
-  const [breeds, updateBreeds] = React.useState([]);
+  const [pets, updatePets] = React.useState([] as Animal[]);
+  const [breeds, updateBreeds] = React.useState([] as string[]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, updateBreed] = useDropdown("Breed", "", breeds);
   const [theme, updateTheme] = React.useContext(ThemeContext);

@@ -1,46 +1,55 @@
 import React, { lazy } from "react";
-import Pet from "@frontendmasters/pet";
+import Pet, { Photo } from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 
 const Modal = lazy(() => import("./Modal"));
 
-class Details extends React.Component {
-  state = {
+class Details extends React.Component<RouteComponentProps<{ id: string }>> {
+  public state = {
     loading: true,
     showModal: false,
+    name: "",
+    url: "",
+    type: "",
+    breed: "",
+    description: "",
+    location: "",
+    media: [] as Photo[],
   };
 
-  componentDidMount() {
-    // throw new Error("lol");
-    Pet.animal(this.props.id).then(({ animal }) => {
-      this.setState({
-        url: animal.url,
-        id: animal.id,
-        name: animal.name,
-        type: animal.type,
-        breed: animal.breeds,
-        description: animal.description,
-        location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
-        media: animal.photos,
-        loading: false,
-      });
-    }, console.error);
+  public componentDidMount() {
+    this.props.id
+      ? // throw new Error("lol");
+        Pet.animal(+this.props.id).then(({ animal }) => {
+          this.setState({
+            url: animal.url,
+            id: animal.id,
+            name: animal.name,
+            type: animal.type,
+            breed: animal.breeds,
+            description: animal.description,
+            location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
+            media: animal.photos,
+            loading: false,
+          });
+        }, console.error)
+      : navigate("/");
   }
 
-  toggleModal = () => {
+  public toggleModal = () => {
     this.setState({
       showModal: !this.state.showModal,
     });
   };
 
-  adopt = () => {
+  public adopt = () => {
     return navigate(this.state.url);
   };
 
-  render() {
+  public render() {
     if (this.state.loading) {
       return <h1>loading...</h1>;
     }
@@ -58,7 +67,7 @@ class Details extends React.Component {
         <Carousel media={media} />
         <div>
           <h1>{name}</h1>
-          <h2>{`${type} - ${breed.primary} - ${location}`}</h2>
+          <h2>{`${type} - ${breed} - ${location}`}</h2>
           <ThemeContext.Consumer>
             {([theme]) => (
               <button
@@ -89,7 +98,9 @@ class Details extends React.Component {
   }
 }
 
-export default function DetailsWithError(props) {
+export default function DetailsWithError(
+  props: RouteComponentProps<{ id: string }>
+) {
   return (
     <ErrorBoundary>
       <Details {...props} />

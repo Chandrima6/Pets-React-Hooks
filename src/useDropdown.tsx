@@ -1,10 +1,14 @@
-import React from "react";
+import React, { FunctionComponent, Dispatch } from "react";
 
-const useDropdown = (label, defaultState, options) => {
+const useDropdown = (
+  label: string,
+  defaultState: string,
+  options: string[]
+) => {
   const [state, updateState] = React.useState(defaultState);
   const id = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
 
-  const Dropdown = () => (
+  const Dropdown: FunctionComponent = () => (
     <label htmlFor={id}>
       {label}
       <select
@@ -24,7 +28,11 @@ const useDropdown = (label, defaultState, options) => {
     </label>
   );
 
-  return [state, Dropdown, updateState];
+  return [state, Dropdown, updateState] as [
+    string,
+    FunctionComponent,
+    Dispatch<string>
+  ];
 };
 
 export default useDropdown;
