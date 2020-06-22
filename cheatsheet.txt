@@ -24,3 +24,8 @@ get a derived state => passing a property to a child component from parent as st
 arrow function dont create new context so this will refer to the component but normal functions create new context so have to bind this to the function. whenever passing functions to child component and using event handlers use arrow function to make sure this refers to the current component. lifecycle methods, render will always have current context of this.
 
 + converts any string to number
+
+Branches:
+master: typescript + react - redux
+vanilla-js-code: vanilla js + react -redux
+react-redux: vanilla js + react + redux
